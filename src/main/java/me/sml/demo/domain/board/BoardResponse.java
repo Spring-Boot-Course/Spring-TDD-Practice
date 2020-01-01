@@ -12,12 +12,16 @@ public class BoardResponse {
 
     private String content;
 
+    private String message;
+
     private LocalDateTime createTime;
 
+
     @Builder
-    public BoardResponse(String title, String content, LocalDateTime createTime) {
+    public BoardResponse(String title, String content, String message, LocalDateTime createTime) {
         this.title = title;
         this.content = content;
+        this.message = message;
         this.createTime = createTime;
     }
 }
