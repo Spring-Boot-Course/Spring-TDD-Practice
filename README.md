@@ -1,5 +1,8 @@
 # Spring-TDD-Practice
 
+[![Build Status](https://travis-ci.com/Spring-Boot-Course/Spring-TDD-Practice.svg?branch=master)](https://travis-ci.com/Spring-Boot-Course/Spring-TDD-Practice)
+[![Coverage Status](https://coveralls.io/repos/github/Spring-Boot-Course/Spring-TDD-Practice/badge.svg?branch=master)](https://coveralls.io/github/Spring-Boot-Course/Spring-TDD-Practice?branch=master)
+
 ### 통합테스트
 
 코드
