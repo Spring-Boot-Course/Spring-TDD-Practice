@@ -1,9 +1,10 @@
-package me.sml.demo.domain.board;
+package me.sml.demo.domain.board.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.sml.demo.domain.board.Board;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-public class BoardRequestDto {
+public class SaveBoardRequest {
 
     @NotNull
     private String title;
@@ -28,7 +29,7 @@ public class BoardRequestDto {
     }
 
     @Builder
-    public BoardRequestDto(String title, String content) {
+    public SaveBoardRequest(String title, String content) {
         this.title = title;
         this.content = content;
     }

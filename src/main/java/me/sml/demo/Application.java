@@ -1,6 +1,5 @@
 package me.sml.demo;
 
-import me.sml.demo.domain.board.BoardRequestDto;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

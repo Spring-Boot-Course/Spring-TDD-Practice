@@ -1,4 +1,4 @@
-package me.sml.demo.domain.board;
+package me.sml.demo.domain.board.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class BoardResponse {
+public class SaveBoardResponse {
 
     private String title;
 
@@ -18,7 +18,7 @@ public class BoardResponse {
 
 
     @Builder
-    public BoardResponse(String title, String content, String message, LocalDateTime createTime) {
+    public SaveBoardResponse(String title, String content, String message, LocalDateTime createTime) {
         this.title = title;
         this.content = content;
         this.message = message;

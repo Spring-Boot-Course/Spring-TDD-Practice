@@ -1,6 +1,7 @@
 package me.sml.demo.domain.board;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.sml.demo.domain.board.dto.SaveBoardRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +38,14 @@ public class BoardMockApiTest {
     public void 게시글_저장() throws Exception{
 
         //given
-        BoardRequestDto boardRequestDto = BoardRequestDto.builder()
+        SaveBoardRequest saveBoardRequest = SaveBoardRequest.builder()
                 .title("게시글1")
                 .content("게시글1")
                 .build();
 
         Board board = Board.builder()
-                .title(boardRequestDto.getTitle())
-                .content(boardRequestDto.getContent())
+                .title(saveBoardRequest.getTitle())
+                .content(saveBoardRequest.getContent())
                 .createTime(LocalDateTime.now())
                 .build();
 
@@ -55,14 +56,14 @@ public class BoardMockApiTest {
         ResultActions resultActions = mockMvc.perform(
                 post("/board")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(objectMapper.writeValueAsString(boardRequestDto))
+                        .content(objectMapper.writeValueAsString(saveBoardRequest))
         ).andDo(print());
 
         //then
         resultActions
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("message").value("success"))
-                .andExpect(jsonPath("title").value(boardRequestDto.getTitle()))
-                .andExpect(jsonPath("content").value(boardRequestDto.getContent()));
+                .andExpect(jsonPath("title").value(saveBoardRequest.getTitle()))
+                .andExpect(jsonPath("content").value(saveBoardRequest.getContent()));
     }
 }

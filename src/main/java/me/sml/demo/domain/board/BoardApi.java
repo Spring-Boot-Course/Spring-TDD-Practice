@@ -1,11 +1,15 @@
 package me.sml.demo.domain.board;
 
 import lombok.RequiredArgsConstructor;
+import me.sml.demo.domain.board.dto.FindBoardResponse;
+import me.sml.demo.domain.board.dto.SaveBoardRequest;
+import me.sml.demo.domain.board.dto.SaveBoardResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -16,12 +20,12 @@ public class BoardApi {
     private final BoardService boardService;
 
     @PostMapping
-    public ResponseEntity<BoardResponse> saveBoard(@RequestBody @Valid BoardRequestDto dto) {
+    public ResponseEntity<SaveBoardResponse> saveBoard(@RequestBody @Valid SaveBoardRequest dto) {
         Board board = boardService.saveBoard(dto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(
-                        BoardResponse.builder()
+                        SaveBoardResponse.builder()
                                 .title(board.getTitle())
                                 .content(board.getContent())
                                 .createTime(board.getCreateTime())
@@ -30,5 +34,17 @@ public class BoardApi {
                 );
     }
 
+    @GetMapping
+    public ResponseEntity<FindBoardResponse> findAllBoards(){
+        List<Board> boards = boardService.findAllBoards();
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(
+                        FindBoardResponse.builder()
+                                .boards(boards)
+                                .message("success")
+                                .build()
+                );
+    }
 
 }
