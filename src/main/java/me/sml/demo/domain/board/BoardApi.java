@@ -38,7 +38,7 @@ public class BoardApi {
     public ResponseEntity<FindBoardResponse> findAllBoards(){
         List<Board> boards = boardService.findAllBoards();
         return ResponseEntity
-                .status(HttpStatus.CREATED)
+                .status(HttpStatus.OK)
                 .body(
                         FindBoardResponse.builder()
                                 .boards(boards)
