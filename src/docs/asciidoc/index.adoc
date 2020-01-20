@@ -1,0 +1,51 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+= API Document
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+[[introduction]]
+== 소개
+
+게시판 API
+
+[[common]]
+== 공통 사항
+
+API에 관계없이 아래 사항을 지켜주셔야 합니다.
+
+=== Domain
+
+|===
+| 환경 | Domain
+
+| 개발서버
+| `http://dev-board.sml.com`
+
+| 운영서버
+| `https://board.sml.com`
+|===
+
+== 게시판 API
+
+[[save-board]]
+=== 추가
+
+==== Request
+
+include::{snippets}/board-mock-api-test/save-board/request-fields.adoc[]
+
+===== Request HTTP Example
+
+include::{snippets}/board-mock-api-test/save-board/http-request.adoc[]
+
+===== Response HTTP Example
+
+include::{snippets}/board-mock-api-test/save-board/http-response.adoc[]
+
+&#160;

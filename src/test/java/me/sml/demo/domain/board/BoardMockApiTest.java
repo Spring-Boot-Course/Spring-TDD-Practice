@@ -1,8 +1,6 @@
 package me.sml.demo.domain.board;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.specification.RequestSpecification;
 import me.sml.demo.domain.board.dto.SaveBoardRequest;
 import org.junit.Before;
 import org.junit.Rule;
@@ -16,7 +14,6 @@ import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -48,7 +45,7 @@ public class BoardMockApiTest {
     @Autowired
     private WebApplicationContext context;
 
-    private RestDocumentationResultHandler document;
+    private RestDocumentationResultHandler documentationResultHandler;
 
     private MockMvc mockMvc;
 
@@ -61,7 +58,7 @@ public class BoardMockApiTest {
     @Before
     public void setup() {
 
-        this.document = document(
+        this.documentationResultHandler = document(
                 "{class-name}/{method-name}",
                 preprocessRequest(
                         modifyUris()
@@ -74,12 +71,12 @@ public class BoardMockApiTest {
 
         mockMvc = MockMvcBuilders.webAppContextSetup(this.context)
                 .apply(documentationConfiguration(this.restDocumentation))
-                .alwaysDo(document)
+                .alwaysDo(documentationResultHandler)
                 .build();
     }
 
     @Test
-    public void 게시글_저장() throws Exception {
+    public void saveBoard() throws Exception {
 
         //given
         SaveBoardRequest saveBoardRequest = SaveBoardRequest.builder()
@@ -106,7 +103,7 @@ public class BoardMockApiTest {
         //then
         resultActions
                 .andExpect(status().isCreated())
-                .andDo(document.document(
+                .andDo(documentationResultHandler.document(
                         requestFields(
                                 fieldWithPath("title").description("게시글 제목"),
                                 fieldWithPath("content").description("게시글 내용")
@@ -124,7 +121,7 @@ public class BoardMockApiTest {
     }
 
     @Test
-    public void 모든_게시글을_읽어온다() throws Exception {
+    public void findAllBoards() throws Exception {
         //given
         Board board1 = Board.builder()
                 .title("게시글 1")
