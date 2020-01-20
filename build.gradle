@@ -71,6 +71,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
+    testCompile group: 'org.springframework.restdocs', name: 'spring-restdocs-mockmvc', version: '2.0.4.RELEASE'
     testCompile('io.rest-assured:rest-assured:3.0.2') // for rest assured
     testCompile('org.springframework.restdocs:spring-restdocs-restassured') // for rest assured
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
